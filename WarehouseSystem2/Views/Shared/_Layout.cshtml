@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — Warehouse System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Mulish:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="app">
+
+        <div class="main">
+            <header>
+                <div class="header-title">@ViewData["Title"]</div>
+                <div class="header-right">
+                    <div class="user-badge">
+                        <span>👤</span>
+                        <span>@Context.Session.GetString("GebruikerNaam")</span>
+                    </div>
+                    <div class="avatar">
+                        @(Context.Session.GetString("GebruikerNaam")?[0].ToString().ToUpper() ?? "W")
+                    </div>
+                </div>
+            </header>
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
