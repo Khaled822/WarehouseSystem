@@ -13,6 +13,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
+      "workingDirectory": "C:\\Users\\Ghait\\source\\repos\\WarehouseSystem2\\WarehouseSystem2",
       "applicationUrl": "http://localhost:5005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -22,6 +23,7 @@
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
+      "workingDirectory": "C:\\Users\\Ghait\\source\\repos\\WarehouseSystem2\\WarehouseSystem2",
       "applicationUrl": "https://localhost:7235;http://localhost:5005",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

@@ -22,16 +22,19 @@ namespace WarehouseSystem.Data
             return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
         }
 
-        public void RegistreerGebruiker(string? naam, string? email, string? wachtwoord, string? rol = "gebruiker")
+        public void RegistreerGebruiker(string? naam, string? email, string? wachtwoord)
         {
             using var conn = new MySqlConnection(_conn);
             conn.Open();
+            // Include the Rol column in the INSERT and provide a default role so
+            // the database doesn't reject the insert when Rol has no default value.
             var cmd = new MySqlCommand(
                 "INSERT INTO gebruiker (naam, email, wachtwoord, Rol) VALUES (@naam, @email, @ww, @rol)", conn);
             cmd.Parameters.AddWithValue("@naam", naam);
             cmd.Parameters.AddWithValue("@email", email);
             cmd.Parameters.AddWithValue("@ww", wachtwoord);
-            cmd.Parameters.AddWithValue("@rol", rol);
+            // Set a sane default role for new users. Adjust value if your DB uses integers.
+            cmd.Parameters.AddWithValue("@rol", "user");
             cmd.ExecuteNonQuery();
         }
 
@@ -52,22 +55,6 @@ namespace WarehouseSystem.Data
                     Email = r.GetString("email")
                 };
             return null;
-        }
-
-        public int GetMedewerkerCount()
-        {
-            using var conn = new MySqlConnection(_conn);
-            conn.Open();
-            var cmd = new MySqlCommand("SELECT COUNT(*) FROM medewerker", conn);
-            return Convert.ToInt32(cmd.ExecuteScalar());
-        }
-
-        public int GetProductCount()
-        {
-            using var conn = new MySqlConnection(_conn);
-            conn.Open();
-            var cmd = new MySqlCommand("SELECT COUNT(*) FROM product", conn);
-            return Convert.ToInt32(cmd.ExecuteScalar());
         }
     }
 }
